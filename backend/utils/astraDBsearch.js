@@ -4,7 +4,7 @@ const configurations = require('../utils/astraDBInitConfig');
 async function astraDBsearch( inputText){
     let results;
     try{
-        console.log('------------inside astraDBsearchService.js---', inputText);
+        console.log('------------inside astraDBsearch.js---', inputText);
         const azureOpenAIEmbeddingConfig = await configurations.azureOpenAIEmbeddingConfig();
         const vectorStore = await getVectorStore();
         // Embed the input text
