@@ -1,5 +1,5 @@
 const {getVectorStore} = require('./astraDBInit');
-const configurations = require('../utils/astraDBInitConfig');
+const configurations = require('./astraDBInitConfig');
 
 async function astraDBsearch( inputText){
     let results;

@@ -1,15 +1,12 @@
 const { AZURE_OPENAI_CONFIG } = require('../constants/apiKeys')
 const { AzureOpenAI } = require('openai');
-const {astraDBsearch} = require('../utils/astraDBsearch');
+const {astraDBsearch} = require('../utils/astraDB/astraDBsearch');
 const { preprocessChatHistory } = require('../utils/chatHistory');
 
 async function getChatCompletion( userMessage) {
   try {
-    console.log('------------inside openaiService---getChatCompletion function');
     const chatHistory = await preprocessChatHistory(userMessage);
-    console.log('------------chatHistory',chatHistory);
     let astraDBcontext = await astraDBsearch( chatHistory[chatHistory.length - 1].content);
-    // console.log('------------astraDBcontext',astraDBcontext);
       const client = new AzureOpenAI({
                                     apiKey: AZURE_OPENAI_CONFIG.PARAMS_AZURE_OPENAI_API_KEY, 
                                     deployment: AZURE_OPENAI_CONFIG.PARAMS_AZURE_OPENAI_DEPLOYMENT_NAME,

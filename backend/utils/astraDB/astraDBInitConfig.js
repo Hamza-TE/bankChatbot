@@ -1,7 +1,7 @@
 const { DataAPIClient } = require('@datastax/astra-db-ts');
 const { AzureOpenAIEmbeddings } = require("@langchain/azure-openai");
-const {DB_CONFIG} = require('../constants/dbConfig');
-const {AZURE_OPENAI_CONFIG} = require('../constants/apiKeys');
+const {DB_CONFIG} = require('../../constants/dbConfig');
+const { AZURE_OPENAI_CONFIG } = require('../../constants/apiKeys')
 
 async function astraDBinitialseConfig(){
     let astraConfig;

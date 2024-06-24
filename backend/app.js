@@ -6,7 +6,7 @@ const chatRoute = require('./routes/chatRoute');
 // const astraDBsearchRoute = require('./routes/astraDBsearchRoute');
 const {API_ENDPOINTS} = require('./constants/apiEndpoints');
 const API_KEY =require('./constants/apiKeys')
-const { initializeVectorStore } = require('./utils/astraDBInit')
+const { initializeVectorStore } = require('./utils/astraDB/astraDBInit')
 
 
 const app = express();
