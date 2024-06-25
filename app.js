@@ -7,10 +7,12 @@ const chatRoute = require('./routes/chatRoute');
 const {API_ENDPOINTS} = require('./constants/apiEndpoints');
 const API_KEY =require('./constants/apiKeys')
 const { initializeVectorStore } = require('./utils/astraDB/astraDBInit')
+const path = require('path');
 
 
 const app = express();
 app.use(cors());
+
 app.use(bodyParser.json());
 
 //Initialize the vector store
@@ -23,9 +25,12 @@ initializeVectorStore()
     process.exit(1); // Exit the process if initialization fails
   });
 
-
-
 app.use(API_ENDPOINTS.GET_ASSISTANT_RESPONSE, chatRoute );
-// app.use(API_ENDPOINTS.GET_ASTRA_DB_SEARCH, astraDBsearchRoute );
+
+// production script
+app.use(express.static("./client/build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 module.exports = app;
