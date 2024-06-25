@@ -4,6 +4,7 @@ const configurations = require('./astraDBInitConfig');
 async function astraDBsearch( inputText){
     let results;
     try{
+      if(inputText){
         console.log('------------inside astraDBsearch.js---', inputText);
         const azureOpenAIEmbeddingConfig = await configurations.azureOpenAIEmbeddingConfig();
         const vectorStore = await getVectorStore();
@@ -19,6 +20,9 @@ async function astraDBsearch( inputText){
         } else {
           return results[0][0].pageContent;
         }
+      } else{
+        return 'null'
+      }
 } catch (error) {
     console.error('Error in AstraDB search request:', error.response ? error.response.data : error.message);
     throw error;

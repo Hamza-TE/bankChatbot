@@ -2,7 +2,7 @@ const { AZURE_OPENAI_CONFIG } = require('../constants/apiKeys')
 const { AzureOpenAI } = require('openai');
 const {astraDBsearch} = require('../utils/astraDB/astraDBsearch');
 const { preprocessChatHistory } = require('../utils/chatCompletion/chatHistory');
-const { systemPrompt, systemPrompt02 } = require('../utils/chatCompletion/constants');
+const { systemPrompt } = require('../utils/chatCompletion/constants');
 
 
 async function getChatCompletion( userMessage) {
@@ -23,7 +23,6 @@ async function getChatCompletion( userMessage) {
           role: chat.role,
           content: chat.content
       })});
-    console.log('------------completionsInput',completionsInput);
     
      // Step 1: send the conversation and available functions to the model
     console.log('------------STEP1');
@@ -71,12 +70,17 @@ async function getChatCompletion( userMessage) {
         functionResponse = await functionToCall(
           functionArgs.query,
         );
-        console.log('------------functionResponse',functionResponse);
       }
       let completionsInput02 = [{ 
         role: "system", 
-        content: `You are a helpful assistant that answers user questions using only the context provided. If context is 'null' or does not contain relevant information, respond with only "No match found in Database".
-        Context: ${functionResponse}`
+        content:`You are a helpful assistant that answers user questions using only the context provided. 
+  Do not use any outside knowledge or attempt to fill in gaps. 
+
+  If the context is 'null' or does not contain relevant information, respond with exactly "No match found in Database". 
+  Do not answer from your own knowledge just use context provided.
+
+  Context: ${functionResponse}
+  `
       }];
       chatHistory.forEach((chat) => {
         completionsInput02.push({

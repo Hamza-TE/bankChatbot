@@ -45,13 +45,7 @@ Steps to Proceed:
   };
 
 
-  const systemPrompt02 = { 
-    role: "system", 
-    content: `You are a helpful assistant that answers user questions using only the context provided. If context is 'null' or does not contain relevant information, respond with only "No match found in Database".
-    `
-  };
   
 module.exports = {
-    systemPrompt,
-    systemPrompt02
+    systemPrompt
   };

@@ -4,7 +4,6 @@ const chatService = require('../services/chatService');
 async function getChatResponse(req, res){
   const { messages } = req.body;
   try {
-    console.log('-------------------FRONTEND messages:', messages)
     const response = await chatService.getChatCompletion( messages);
     res.json({ response });
   } catch (error) {
