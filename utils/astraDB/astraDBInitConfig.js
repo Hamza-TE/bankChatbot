@@ -12,7 +12,7 @@ async function astraDBinitialseConfig(){
         astraConfig = {
             token: DB_CONFIG.ASTRA_DB_APPLICATION_TOKEN,
             endpoint: DB_CONFIG.ASTRA_DB_API_ENDPOINT,
-            collection: DB_CONFIG.ASTRA_DB_COLLENTION_NAME,
+            collection: DB_CONFIG.ASTRA_DB_COLLECTION_NAME,
             collectionOptions: {
             vector: {
                 dimension: 1536,
