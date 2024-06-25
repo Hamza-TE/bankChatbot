@@ -30,7 +30,7 @@ app.use(API_ENDPOINTS.GET_ASSISTANT_RESPONSE, chatRoute );
 // production script
 app.use(express.static("./client/dist"));
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
 });
 
 module.exports = app;
