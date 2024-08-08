@@ -1,2 +1,2 @@
 # bankChatbot
-node Js react Js AstraDB Azure OpenAI
+node Js react Js AstraDB Azure OpenAI.
